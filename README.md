@@ -1,2 +1,2 @@
-# Interactive-Reinforcement-Learning
-Explore key concepts in Reinforcement Learning through interactive visualizations.
+# Explore Reinforcement Learning
+Interact with key concepts in Reinforcement Learning through engaging visualizations.
