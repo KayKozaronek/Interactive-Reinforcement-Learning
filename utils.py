@@ -1,3 +1,3 @@
 CHAPTEROPTIONS = ['Chapter 00 - Welcome',
              'Chapter 01 - Introduction',
-             'Chapter 02 - Play around']
+             'Chapter 02 - Multi-armed Bandits']
