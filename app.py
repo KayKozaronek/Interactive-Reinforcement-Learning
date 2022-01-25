@@ -1,5 +1,5 @@
 import streamlit as st
-from Chapters import Chapter00, Chapter01, Chapter02
+from Chapters import Chapter00, Chapter01, Chapter02, Pseudocode
 from utils import CHAPTEROPTIONS 
 
 st.title('Explore Reinforcement Learning')
