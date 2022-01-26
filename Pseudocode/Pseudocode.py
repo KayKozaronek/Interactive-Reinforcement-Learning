@@ -3,22 +3,27 @@ import numpy as np
 
 
 def run():
-    st.write("A simple bandit algorithm")
-   
-    # st.text("""
-    #         Initialize, for a = 1 to k:
-    #             Q(a) <- 0
-    #             N(a) <- 0
-                
-    #         Loop forever:
-    #             A <- argmax_a Q(a)with probability 1 '(breaking ties randomly)a random action  with probability'
-    #             R <- bandit(A)
-    #             N(A) <- N(A) + 1 
-    #             Q(A) <- Q(A) + 1/N(A)[R - Q(A)]
-    #         """)
-    
-    st.image('Chapters\simple_bandit_alg.png')
-    
+    st.write("## A simple bandit algorithm")
+    with st.expander("See Pseudocode:"):
+            
+        st.text(r"""
+                Initialize, for a = 1 to k:
+                    Q(a) <- 0
+                    N(a) <- 0 
+                    
+                Loop forever: 
+                    With probability 1 - ε: 
+                        A <- argmax_a Q(a) 
+                    Else (with probability ε):
+                        A <- a random action 
+                        
+                    R    <- bandit(A)
+                    N(A) <- N(A) + 1 
+                    Q(A) <- Q(A) + 1/N(A)[R - Q(A)]
+                """)
+        
+        # st.image('Chapters\simple_bandit_alg.png')
+        
     code = '''action_space = [0,1,2,3]
 epsilon = 0.05
 
