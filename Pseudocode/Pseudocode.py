@@ -1,9 +1,14 @@
 import streamlit as st
 import numpy as np
-
+from CodeSnippets import SIMPLE_BANDIT_ALG
 
 def run():
-    st.write("## A simple bandit algorithm")
+    st.write("## Pseudocode and Implementations")
+    st.write("""
+             This Section contains pseudocode from the Book and simple NumPy implementations thereof.
+             """)
+    st.write("### A simple bandit algorithm (Chapter 2.4)")
+    
     with st.expander("See Pseudocode:"):
             
         st.text(r"""
@@ -23,29 +28,9 @@ def run():
                 """)
         
         # st.image('Chapters\simple_bandit_alg.png')
-        
-    code = '''action_space = [0,1,2,3]
-epsilon = 0.05
-
-def bandit_algorithm(action, epsilon):
-    bandit = np.random.randn(len(action_space))
-    Q = np.zeros(len(action_space))
-    N = np.zeros(len(action_space))
-    
-    finished = False 
-    
-    while finished:
-        if np.random.rand() < 1- epsilon:
-            action = np.argmax(Q)
-        else:
-            np.random.choice(action_space)
-        reward = bandit(action)
-        N[action] = N[action] + 1
-        Q[action] = Q[action] + 1/N[action] * (reward - Q[action])
-    ''' 
     
     with st.expander("See NumPy implementation:"):
-        st.code(code, language="python")
+        st.code(SIMPLE_BANDIT_ALG, language="python")
 
 action_space = [0,1,2,3]
 epsilon = 0.05

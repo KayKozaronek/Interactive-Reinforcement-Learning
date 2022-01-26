@@ -1,8 +1,9 @@
+from Pseudocode import Pseudocode
 import streamlit as st
-from Chapters import Chapter00, Chapter01, Chapter02, Pseudocode
+from Chapters import Chapter00, Chapter01, Chapter02
 from utils import CHAPTEROPTIONS 
 
-st.title('Explore Reinforcement Learning')
+st.title('Reinforcement Learning Exercises')
 
 st.sidebar.title('Select a Chapter')
 option = st.sidebar.selectbox(label ='',

@@ -1,8 +1,8 @@
 import streamlit as st
 import pandas as pd 
 import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
+import plotly.express as px
+from CodeSnippets import VIOLIN_PLOT_10_ARMED_TESTBED
 
 def run_experiment(epsilons, timesteps, k, bandit):
     q = np.zeros(k)
@@ -36,6 +36,7 @@ def create_bandit(k):
 
 
 def run():
+    st.write('## Chapter 02 - Multi-armed Bandits')
     num_random = 2
     k = 10 
         
@@ -57,29 +58,35 @@ def run():
                     )
     df = pd.DataFrame(d)
     
-    sns.set(rc = {'figure.figsize':(15,8)})
-    fig, ax = plt.subplots()
+    fig = px.violin(df, 
+                     x=df['action'], 
+                     y=df['value'],
+                     box = True,
+                     color= df['action'],
+                     labels={
+                    "action": "Action",
+                    "value": "Reward Distribution",
+                    },
+                     title='10-armed Testbed')
+    
+    st.plotly_chart(fig)
+    
+    with st.expander('See code for Violin Plot'):
+        st.code(VIOLIN_PLOT_10_ARMED_TESTBED, 
+                language='python')
+    
+    # k = 10
+    # epsilons = np.array([0.001, 0.01, 0.1])
+    # timesteps = 10000
+    
+    # bandit = create_bandit(k)
+    
+    # average_rewards = np.array([run_experiment(epsilons, timesteps, k, bandit) for i in range(10)]).mean(axis=0)
+    
+    # fig2, ax2 = plt.subplots()
 
-    ax = sns.violinplot(x = df['action'], y=df['value'], inner='quartile')
-    ax.axhline(0, ls='--', c='red')
-    ax.set_xlabel('Action')
-    ax.set_ylabel('Reward\n Distribution', rotation=0, labelpad=30)
-    ax.set_title('10-armed Testbed')
-
-    st.pyplot(fig)
-    
-    k = 10
-    epsilons = np.array([0.001, 0.01, 0.1])
-    timesteps = 10000
-    
-    bandit = create_bandit(k)
-    
-    average_rewards = np.array([run_experiment(epsilons, timesteps, k, bandit) for i in range(10)]).mean(axis=0)
-    
-    fig2, ax2 = plt.subplots()
-
-    ax2.plot(average_rewards)
-    ax2.legend(labels=['epsilon = 0.001', 'epsilon = 0.01', 'epsilon = 0.1'])
-    ax2.set_xlabel('Timesteps')
-    ax2.set_ylabel('Average Reward')
-    st.pyplot(fig2)
+    # ax2.plot(average_rewards)
+    # ax2.legend(labels=['epsilon = 0.001', 'epsilon = 0.01', 'epsilon = 0.1'])
+    # ax2.set_xlabel('Timesteps')
+    # ax2.set_ylabel('Average Reward')
+    # st.pyplot(fig2)
