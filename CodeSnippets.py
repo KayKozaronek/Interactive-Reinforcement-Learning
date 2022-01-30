@@ -50,3 +50,38 @@ def bandit_algorithm(action, epsilon):
         N[action] = N[action] + 1
         Q[action] = Q[action] + 1/N[action] * (reward - Q[action])
 """
+
+ATTEMPT_AT_SARSA = """
+action_space = [0,1,2,3]
+
+alpha = 0.1
+epsilon = 0.01
+gamma = 0.9
+num_episodes = 10
+
+policy = np.random.rand(env.observation_space.n, len(action_space))
+
+def epsilon_greedy(state, epsilon):
+  if np.random.rand() < 1-epsilon + (epsilon/4):
+    action = np.argmax(Q[state,:])
+  else:
+    action = np.random.choice(k)
+  return action
+
+def sarsa(alpha, epsilon, num_episodes, gamma):
+  # Initialization of Q[s,a]
+  Q = np.random.rand(env.observation_space.n, len(action_space))
+
+  for episode in range(num_episodes):
+    starting_state = env.reset()
+    action = epsilon_greedy(starting_state, epsilon)
+    
+    finished = False
+    while not finished:
+      next_state, reward, finished, _ = env.step(action)
+      next_action = epsilon_greedy(next_state, epsilon)
+      Q[state, action] += alpha*(reward + gamma*Q[next_state, next_action] - Q[state, action])      
+      state = next_state
+      action = next_action
+  return Q 
+  """

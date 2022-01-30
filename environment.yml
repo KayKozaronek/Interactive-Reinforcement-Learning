@@ -1,0 +1,6 @@
+name: Distributed
+
+dependencies:
+  - numpy
+  - pandas
+  - plotly
